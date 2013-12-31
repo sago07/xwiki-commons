@@ -129,11 +129,7 @@ public class DefaultXMLSerializer implements InvocationHandler
                     }
 
                     if (attributeName != null) {
-                        if (parameterValue instanceof String) {
-                            this.xmlStreamWriter.writeAttribute(attributeName, (String) parameterValue);
-
-                            parameters.set(filterParameter.getIndex(), null);
-                        } else if (XMLUtils.isSimpleType(typeClass)) {
+                        if (XMLUtils.isSimpleType(typeClass)) {
                             this.xmlStreamWriter.writeAttribute(attributeName,
                                 this.converter.<String> convert(String.class, parameterValue));
 
@@ -316,14 +312,8 @@ public class DefaultXMLSerializer implements InvocationHandler
                     }
 
                     this.xmlStreamWriter.writeStartElement(elementName);
-
                     if (attributeName != null) {
                         this.xmlStreamWriter.writeAttribute(attributeName, attributeValue);
-                    }
-                    if (descriptor.getParameters()[i].getType() == Object.class
-                        && parameterValue.getClass() != String.class) {
-                        this.xmlStreamWriter.writeAttribute(this.configuration.getAttributeParameterType(),
-                            parameterValue.getClass().getCanonicalName());
                     }
 
                     this.parameterManager.serialize(descriptor.getParameters()[i].getType(), parameterValue,

@@ -50,7 +50,6 @@ public interface ParameterManager
      * @param type the type
      * @param rootElement the source to convert
      * @return the object
-     * @throws ClassNotFoundException when failing to find the class of the property to create
      */
-    Object unSerialize(Type type, Element rootElement) throws ClassNotFoundException;
+    Object unSerialize(Type type, Element rootElement);
 }
